@@ -1,0 +1,16 @@
+<ul>
+  <% @imports.each do |import| %>
+    <li>
+      <p>Status: <%= import.display_status %></p>
+      <p>Number of Records: <%= import.number_of_records_imported %></p>
+      <% if import.failed? %>
+        <p>Errors:</p>
+        <ul>
+          <% import.formatted_errors.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -11,5 +11,14 @@ module ExampleCsvImport
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_region => ENV['AWS_REGION'],
+      :s3_credentials => {
+        :bucket => ENV['AWS_BUCKET'],
+        :access_key_id => ENV['AWS_ACCESS_KEY'],
+        :secret_access_key => ENV['AWS_SECRET_KEY']
+      }
+    }
   end
 end
