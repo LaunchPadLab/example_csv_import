@@ -6,6 +6,9 @@
   </header>
   <div class="card-content">
     <div class="content">
+      <% if @imports.empty? %>
+        <%= link_to 'Import Some Users', new_user_import_path, class: 'button is-primary' %>
+      <% end %>
       <% @imports.each do |import| %>
         <div class="notification">
           <p>Status: <%= import.display_status %></p>
