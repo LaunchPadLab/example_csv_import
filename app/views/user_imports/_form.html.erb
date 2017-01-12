@@ -1,12 +1,21 @@
 <%= form_for @import, html: { multipart: true } do |f| %>
+
+  <h2>Download Template</h2>
+  <ul>
+    <li><%= link_to 'Example CSV', '/user_example.csv' %></li>
+    <li><%= link_to 'Example CSV (will error)', '/user_bad_example.csv' %></li>
+  </ul>
+
   <% if f.object.failed? %>
+    <h2>Review Errors</h2>
     <ul>
       <% f.object.formatted_errors.each do |error| %>
-        <li><%= error %></li>
+        <li class="error"><%= error %></li>
       <% end %>
     </ul>
   <% end %>
 
+  <h2>Upload File</h2>
   <%= f.file_field :file %>
   <%= f.submit %>
 <% end %>

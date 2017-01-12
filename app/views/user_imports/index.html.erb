@@ -1,16 +1,28 @@
-<ul>
-  <% @imports.each do |import| %>
-    <li>
-      <p>Status: <%= import.display_status %></p>
-      <p>Number of Records: <%= import.number_of_records_imported %></p>
-      <% if import.failed? %>
-        <p>Errors:</p>
-        <ul>
-          <% import.formatted_errors.each do |error| %>
-            <li><%= error %></li>
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      Imports
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <% @imports.each do |import| %>
+        <div class="notification">
+          <p>Status: <%= import.display_status %></p>
+          <p>Number of Records: <%= import.number_of_records_imported %></p>
+          <% if import.failed? %>
+            <p>Errors:</p>
+            <ul>
+              <% import.formatted_errors.each do |error| %>
+                <li class="error"><%= error %></li>
+              <% end %>
+            </ul>
+            <%= link_to 'Fix Import', edit_user_import_path(import), class: 'button is-primary' %>
           <% end %>
-        </ul>
+        </div>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </div>
+  </div>
+</div>
+
+
